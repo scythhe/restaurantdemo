@@ -5,6 +5,7 @@ import { Figure } from '../components/Figure';
 import { SplitLines } from '../components/SplitLines';
 import { useImageTrail } from '../hooks/useImageTrail';
 import { useFloatCards } from '../hooks/useFloatCards';
+import { scrollToAnchor } from '../hooks/useLenis';
 import { gsap } from '../lib/gsap';
 import { motionOK, once, HERO_REVEAL } from '../lib/motion';
 
@@ -54,7 +55,7 @@ export function Hero() {
   }, []);
 
   return (
-    <header ref={ref} className="relative min-h-[100svh] overflow-hidden">
+    <header ref={ref} id="top" className="relative min-h-[100svh] overflow-hidden">
       <div className="wrap grid min-h-[100svh] content-center items-center gap-y-12 pb-28 pt-16 md:grid-cols-12 md:gap-x-[var(--gutter)] md:pb-24">
         <div className="relative z-10 md:col-span-6">
           <SplitLines as="h1" className="type-wordmark" text={hero.titleEn} playOn="hero" />
@@ -64,6 +65,28 @@ export function Hero() {
           <p className="type-body mt-6 max-w-[36ch]" data-hero-fade>
             {hero.line}
           </p>
+          <div className="mt-10 flex flex-wrap items-center gap-4" data-hero-fade>
+            <a
+              href={hero.ctaPrimary.href}
+              className="btn"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToAnchor(hero.ctaPrimary.href);
+              }}
+            >
+              {hero.ctaPrimary.label}
+            </a>
+            <a
+              href={hero.ctaSecondary.href}
+              className="btn btn-ghost"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToAnchor(hero.ctaSecondary.href);
+              }}
+            >
+              {hero.ctaSecondary.label}
+            </a>
+          </div>
         </div>
 
         {/* Framed hero image with the three floating menu cards around it */}

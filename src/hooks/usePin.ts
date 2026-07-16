@@ -23,15 +23,16 @@ export function usePin(stageRef: RefObject<HTMLElement>): void {
         scrollTrigger: {
           trigger: stage,
           start: 'top top',
-          end: '+=100%', // pin length: one viewport height, per spec
+          end: '+=85%', // pin length: a bit under one viewport, keeps the page short
           pin: true,
           scrub: 0.8,
           anticipatePin: 1,
         },
       });
       imgs.forEach((img, i) => {
-        // travel: 110vh → -130vh; offset 0.28 sets the gap between images
-        tl.fromTo(img, { y: '110vh' }, { y: '-130vh', ease: 'none' }, i * 0.28);
+        // first image is already in frame when the pin catches; the rest
+        // travel the full 110vh → -130vh, offset 0.26 apart
+        tl.fromTo(img, { y: i === 0 ? '38vh' : '110vh' }, { y: '-130vh', ease: 'none' }, i * 0.26);
       });
     }, stage);
 

@@ -16,15 +16,15 @@ const { table } = CONTENT;
  */
 const TILE_CLASS: Record<string, string> = {
   cheesecake: 'col-span-2 md:col-span-6',
-  clubSandwich: 'md:col-span-4 md:col-start-8 md:mt-[18vh]',
-  pizza: 'md:col-span-4 mt-[8vh] md:mt-0',
-  salad: 'md:col-span-3 md:col-start-6 md:mt-[10vh]',
-  burger: 'md:col-span-3 md:col-start-10 mt-[6vh] md:mt-[-8vh]',
-  khachapuri: 'md:col-span-5 md:col-start-2 md:mt-[4vh]',
-  soup: 'md:col-span-3 md:col-start-8 mt-[8vh] md:mt-[14vh]',
-  salmon: 'md:col-span-4 md:col-start-4 mt-[6vh] md:mt-[6vh]',
-  mojito: 'md:col-span-3 md:col-start-9 md:mt-[-6vh]',
-  coffee: 'md:col-span-4 md:col-start-2 mt-[8vh] md:mt-[10vh]',
+  clubSandwich: 'md:col-span-4 md:col-start-8 md:mt-[10vh]',
+  pizza: 'md:col-span-4 mt-[4vh] md:mt-0',
+  salad: 'md:col-span-3 md:col-start-6 md:mt-[6vh]',
+  burger: 'md:col-span-3 md:col-start-10 mt-[3vh] md:mt-[-5vh]',
+  khachapuri: 'md:col-span-5 md:col-start-2 md:mt-[2vh]',
+  soup: 'md:col-span-3 md:col-start-8 mt-[4vh] md:mt-[8vh]',
+  salmon: 'md:col-span-4 md:col-start-4 mt-[3vh] md:mt-[3vh]',
+  mojito: 'md:col-span-3 md:col-start-9 md:mt-[-4vh]',
+  coffee: 'md:col-span-4 md:col-start-2 mt-[4vh] md:mt-[6vh]',
 };
 
 export function Table() {
@@ -78,7 +78,7 @@ export function Table() {
   const shown = visibleKeys(active);
 
   return (
-    <section ref={ref} className="section wrap" aria-labelledby="table-heading">
+    <section ref={ref} className="section wrap" aria-labelledby="table-heading" id="menu">
       <p className="eyebrow" data-body-reveal>{table.eyebrow}</p>
       <SplitLines id="table-heading" className="type-h2 mt-4" text={table.heading} />
       <p className="type-body mt-8 max-w-[40ch]" data-body-reveal>
@@ -101,7 +101,7 @@ export function Table() {
 
       <div
         ref={gridRef}
-        className="mt-[clamp(3rem,8vh,6rem)] grid grid-cols-2 items-start gap-x-[clamp(1rem,2.5vw,3rem)] gap-y-[clamp(3rem,8vh,6rem)] md:grid-cols-12"
+        className="mt-[clamp(2.5rem,6vh,4rem)] grid grid-cols-2 items-start gap-x-[clamp(1rem,2.5vw,3rem)] gap-y-[clamp(2.5rem,6vh,4rem)] md:grid-cols-12"
       >
         {table.items.map(({ key, name }) => {
           const visible = !shown || shown.has(key);

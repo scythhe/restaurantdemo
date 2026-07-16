@@ -1,7 +1,9 @@
-# Restaurant Terrace — single-page site
+# Veranda — single-page restaurant site (demo)
 
-Marketing page for Restaurant Terrace (რესტორანი ტერასა), Expo Georgia,
-118 Akaki Tsereteli Ave, Tbilisi.
+Portfolio/pitch demo of a marketing page for a fictional courtyard
+restaurant, "Veranda" (ვერანდა), Tbilisi.
+
+Contact for the demo: Nikoloz Berdznishvili · 599 14 82 42.
 
 ## Run
 
@@ -19,23 +21,27 @@ Replace any `src` URL (and its `alt` text) — nothing else needs to change.
 Aspect ratios are locked by the layout, so photos are cropped to fit
 (`object-fit: cover`); portrait photos work best for the 3/4 and 4/5 slots.
 
-Current placeholders are Unsplash stock. They are not photos of the
-restaurant.
+Current placeholders are Unsplash stock.
 
 ## Editing copy
 
-All text lives in `src/config/content.ts`. The Facebook URL is a
-placeholder — set the real page URL there. Keep total page copy under
-200 words.
+All text lives in `src/config/content.ts` — brand name, nav, hours,
+reviews, reservation copy, footer credit, socials (currently placeholder
+URLs). The phone number appears in `content.ts` only.
 
 ## Structure
 
 - `src/config/` — media + copy, the only files that need touching day-to-day
-- `src/hooks/` — Lenis smooth scroll, scroll reveals, the one pinned section,
-  the hero image trail (`useImageTrail`, pointer-only) and floating-card
-  parallax (`useFloatCards`)
-- `src/components/` — `Figure` (ratio-locked image), `SplitLines` (line reveal)
-- `src/sections/` — Hero, Place, Fire, Table (filter pills + GSAP Flip), Find
+- `src/hooks/` — Lenis smooth scroll (+ `scrollToAnchor` for nav links),
+  scroll reveals, the one pinned section, the hero image trail
+  (`useImageTrail`, pointer-only) and floating-card parallax (`useFloatCards`)
+- `src/components/` — `Figure` (ratio-locked image), `SplitLines` (line
+  reveal), `Nav` (fixed glass bar + scroll-progress hairline), `Marquee`
+  (CSS ticker divider)
+- `src/sections/` — Hero (with CTAs), Place, Fire, Table (filter pills +
+  GSAP Flip), Voices (reviews), Reserve (booking request form, demo-only
+  submit — wire it to a booking API or WhatsApp link for production),
+  Find (map + live open/closed dot), Footer
 - `src/Preloader.tsx` — counter tied to the hero image decode
 - `scripts/prerender.mjs` — bakes full HTML into `dist/index.html` at build
   time, so the page is complete with JavaScript disabled
@@ -46,4 +52,5 @@ Georgian. The hero image trail mounts only on `(pointer: fine)` devices — its
 12 pooled cards ship without `src` attributes, so phones never download them.
 
 Reduced motion (`prefers-reduced-motion: reduce`) disables the preloader,
-smooth scroll, and every animation; the page renders in its final state.
+smooth scroll, marquee, and every animation; the page renders in its final
+state. The nav is always visible in that mode (and without JS).

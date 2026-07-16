@@ -19,7 +19,7 @@ export function Fire() {
   useReveal(sectionRef);
 
   return (
-    <section ref={sectionRef} className="section" aria-labelledby="fire-heading" id="fire">
+    <section ref={sectionRef} className="section fire-band" aria-labelledby="fire-heading" id="fire">
       <div className="wrap">
         <div ref={stageRef} className="fire-stage">
           <div className="fire-heading">
@@ -36,7 +36,7 @@ export function Fire() {
       </div>
 
       {/* Below the pin: khachapuri, full-bleed */}
-      <div className="mt-[clamp(4rem,10vh,8rem)]">
+      <div className="mt-[clamp(3rem,7vh,5rem)]">
         <Figure id="khachapuri" className="w-full" />
         <p className="wrap type-body mt-6" data-body-reveal>
           {fire.khachapuriLine}

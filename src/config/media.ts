@@ -27,13 +27,13 @@ export const MEDIA = {
     ratio: '16/9',
   },
   place: {
-    src: u('photo-1441974231531-c6227db76b6e', 1080),
-    alt: 'Old trees on the ExpoGeorgia grounds',
+    src: u('photo-1537047902294-62a40c20a6ae', 1080),
+    alt: 'Set tables among the plants on the courtyard terrace',
     ratio: '4/5',
   },
   oven: {
-    src: u('photo-1533134242443-d4fd215305ad', 1080),
-    alt: 'Fire inside the wood-burning oven',
+    src: u('photo-1579751626657-72bc17010498', 1080),
+    alt: 'Pizza at the mouth of the wood-burning oven, fire behind',
     ratio: '4/5',
   },
   pizza: {
@@ -47,9 +47,9 @@ export const MEDIA = {
     ratio: '1/1',
   },
   khachapuri: {
-    src: u('photo-1509440159596-0249088772ff', 1600),
-    alt: 'Khachapuri fresh from the oven',
-    ratio: '1/1',
+    src: u('photo-1746185601009-3ddac4b23121', 1600),
+    alt: 'Adjaruli khachapuri, yolk still soft',
+    ratio: '16/9',
   },
   cheesecake: {
     src: u('photo-1565958011703-44f9829ba187', 1080),
@@ -67,8 +67,8 @@ export const MEDIA = {
     ratio: '3/4',
   },
   soup: {
-    src: u('photo-1547592166-23ac45744acd', 1080),
-    alt: 'Mushroom cream soup',
+    src: u('photo-1616501268209-edfff098fdd2', 1080),
+    alt: 'Mushroom cream soup with croutons',
     ratio: '1/1',
   },
   burger: {

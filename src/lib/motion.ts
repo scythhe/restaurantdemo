@@ -4,10 +4,19 @@
  * the page simply renders in its final state.
  */
 
+/**
+ * Demo escape hatch: `?motion` in the URL forces the full animated build even
+ * when the OS asks for reduced motion. `data-force-motion` on <html> lets the
+ * CSS reduced-motion block stand down too (preloader, marquee, scroll cue).
+ */
+const FORCED =
+  typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('motion');
+if (FORCED) document.documentElement.setAttribute('data-force-motion', '');
+
 export function motionOK(): boolean {
   return (
     typeof window !== 'undefined' &&
-    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    (FORCED || !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   );
 }
 

@@ -14,7 +14,7 @@
   --font-marker: "Caveat", cursive;
 
   --gutter: clamp(1.25rem, 4vw, 5rem);
-  --rhythm: clamp(8rem, 18vh, 16rem);
+  --rhythm: clamp(5rem, 11vh, 9rem);
 }
 
 html {
@@ -175,6 +175,29 @@ body {
 
 /* ── The Fire: static (no-JS / reduced-motion) = stacked column.
      [data-motion] switches to the pinned, absolute layout. ── */
+/* Dark full-bleed band: the pin catches on drama, not blank paper */
+.fire-band {
+  background: var(--ink);
+  color: var(--bg);
+  padding-block-end: clamp(3rem, 7vh, 5rem);
+  position: relative;
+  overflow: clip;
+}
+.fire-band::before {
+  /* ember glow rising from the oven corner */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 55% at 78% 18%,
+    color-mix(in srgb, var(--ember) 26%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+.fire-band .type-body {
+  color: color-mix(in srgb, var(--bg) 72%, transparent);
+}
 .fire-stage { position: relative; }
 .fire-img { margin-block-start: clamp(2rem, 6vh, 4rem); }
 [data-motion] .fire-stage {
@@ -196,7 +219,285 @@ body {
 }
 /* full-contrast while the images pass behind it */
 .fire-line {
+  color: var(--bg);
+}
+
+/* ── Buttons ───────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding-inline: 1.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+.btn:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--bg);
+}
+.btn-ghost {
+  background: transparent;
   color: var(--ink);
+  border-color: var(--muted);
+}
+.btn-ghost:hover {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.btn-sm {
+  min-height: 40px;
+  padding-inline: 1.25rem;
+  font-size: 0.8rem;
+}
+
+/* ── Fixed nav: glass bar + scroll-progress hairline ───── */
+.site-nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.site-nav.nav-hidden {
+  transform: translateY(-110%);
+}
+.nav-link {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+.nav-link:hover {
+  color: var(--ink);
+}
+.nav-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* ── Marquee divider ───────────────────────────────────── */
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--surface);
+  padding-block: clamp(1.25rem, 3.5vh, 2.25rem);
+}
+.marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-scroll 38s linear infinite;
+}
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4vw, 2.75rem);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.marquee-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ember);
+  margin-inline: clamp(1.25rem, 3vw, 2.75rem);
+}
+/* the track holds three copies, so one third = one seamless loop */
+@keyframes marquee-scroll {
+  to { transform: translateX(calc(-100% / 3)); }
+}
+
+/* ── Reviews (WORD OF MOUTH) ───────────────────────────── */
+.stars {
+  color: var(--ember);
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+}
+.review {
+  position: relative;
+}
+.review::before {
+  /* oversized ghost quote fills the whitespace behind each card */
+  content: "\201C";
+  position: absolute;
+  top: -0.28em;
+  left: -0.06em;
+  font-family: var(--font-serif);
+  font-size: clamp(7rem, 12vw, 11rem);
+  line-height: 1;
+  color: color-mix(in srgb, var(--ink) 7%, transparent);
+  pointer-events: none;
+}
+.review-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+/* ── Place quick facts ─────────────────────────────────── */
+.fact-value {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+/* ── Reserve: photo backdrop, paper form card ──────────── */
+.reserve-section {
+  position: relative;
+  padding-block: clamp(4rem, 10vh, 7rem);
+  color: var(--bg);
+  overflow: clip;
+}
+.reserve-bg,
+.reserve-bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.reserve-bg img {
+  object-fit: cover;
+  object-position: center;
+}
+.reserve-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    color-mix(in srgb, var(--ink) 88%, transparent),
+    color-mix(in srgb, var(--ink) 62%, transparent)
+  );
+}
+.reserve-section .type-body {
+  color: color-mix(in srgb, var(--bg) 78%, transparent);
+}
+.reserve-section .phone-link {
+  color: var(--bg);
+  text-decoration-color: color-mix(in srgb, var(--bg) 45%, transparent);
+}
+.reserve-card {
+  background: var(--bg);
+  color: var(--ink);
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+.reserve-card .type-body {
+  color: var(--muted);
+}
+.reserve-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.field label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.field input,
+.field select {
+  width: 100%;
+  min-height: 44px;
+  padding-block: 0.5rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--muted);
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--ink);
+  color-scheme: light;
+  transition: border-color 0.2s ease;
+}
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.phone-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--muted);
+}
+
+/* ── Open-now dot (FIND US) ────────────────────────────── */
+.open-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--muted);
+  flex: none;
+}
+.open-dot.is-open {
+  background: var(--leaf);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--leaf) 35%, transparent);
+  animation: open-pulse 2.4s ease-out infinite;
+}
+@keyframes open-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--leaf) 35%, transparent); }
+  70% { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* ── Footer ────────────────────────────────────────────── */
+.site-footer {
+  margin-block-start: var(--rhythm);
+  border-top: 1px solid var(--surface);
+  background: color-mix(in srgb, var(--surface) 45%, var(--bg));
+}
+
+/* ── Film grain: fixed texture wash over everything ────── */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
 }
 
 /* ── Filter pills (THE TABLE) ──────────────────────────── */
@@ -211,11 +512,21 @@ body {
   font-size: 0.875rem;
   background: transparent;
   cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+.pill:hover {
+  border-color: var(--ink);
 }
 .pill[aria-pressed="true"] {
   background: var(--ink);
   color: var(--bg);
   border-color: var(--ink);
+}
+
+/* ── Focus: one visible ring everywhere ────────────────── */
+:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
 }
 
 /* ── Map: mute Google's palette to sit on paper ────────── */
@@ -231,7 +542,11 @@ body {
   background: var(--bg);
 }
 
+/* [data-force-motion] (?motion in the URL) re-enables everything for demos */
 @media (prefers-reduced-motion: reduce) {
-  .preloader { display: none !important; }
-  .scroll-cue::after { animation: none; transform: translateY(-100%); }
+  :root:not([data-force-motion]) .preloader { display: none !important; }
+  :root:not([data-force-motion]) .scroll-cue::after { animation: none; transform: translateY(-100%); }
+  :root:not([data-force-motion]) .marquee-track { animation: none; }
+  :root:not([data-force-motion]) .open-dot.is-open { animation: none; }
+  :root:not([data-force-motion]) .site-nav { transition: none; }
 }
