@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+/* ── Design tokens: warm paper, daylight ───────────────── */
+:root {
+  --bg: #faf7f0;
+  --surface: #f1ebe0;
+  --ink: #2a2622;
+  --muted: #6b655c;
+  --leaf: #3f5540;
+  --ember: #c4562e;
+
+  --font-serif: "Instrument Serif", "Noto Serif Georgian", serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-marker: "Caveat", cursive;
+
+  --gutter: clamp(1.25rem, 4vw, 5rem);
+  --rhythm: clamp(8rem, 18vh, 16rem);
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--leaf);
+  color: var(--bg);
+}
+
+/* ── Type scale ────────────────────────────────────────── */
+/* Wordmark: hero only, warm marker hand */
+.type-wordmark {
+  font-family: var(--font-marker);
+  font-weight: 600;
+  font-size: clamp(3.5rem, 13vw, 10rem);
+  letter-spacing: -0.01em;
+  line-height: 0.92;
+  color: var(--ink);
+}
+
+.type-h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+.type-h3 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.3;
+}
+
+.type-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+/* caption scale for trail / float cards: eyebrow metrics, quiet color */
+.caption {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Georgian text always resolves through Noto Serif Georgian */
+.ka {
+  font-family: var(--font-serif);
+}
+
+/* ── Layout ────────────────────────────────────────────── */
+.wrap {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  margin-block-start: var(--rhythm);
+}
+
+/* ── Hero ──────────────────────────────────────────────── */
+/* Scroll cue: 1px line, 48px tall, wipes downward on loop */
+.scroll-cue {
+  width: 1px;
+  height: 48px;
+  background: var(--muted);
+  overflow: hidden;
+  position: relative;
+}
+.scroll-cue::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  animation: cue-wipe 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes cue-wipe {
+  0% { transform: translateY(-100%); }
+  55% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+/* ── Cards: shared paper frame (trail + floating) ──────── */
+.trail-card,
+.float-card {
+  background: var(--bg);
+  padding: 8px;
+  outline: 1px solid var(--surface);
+}
+.card-img {
+  overflow: hidden;
+  background: var(--surface);
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Trail pool: 12 recycled nodes, invisible at rest, never interactive */
+.trail-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.trail-card .card-img {
+  aspect-ratio: 3 / 4;
+}
+
+/* Hint fades in only when the trail actually mounts (pointer: fine) */
+.trail-hint {
+  opacity: 0;
+}
+
+.float-card {
+  position: absolute;
+  width: clamp(96px, 11vw, 150px);
+  will-change: transform;
+}
+.float-card .card-img {
+  aspect-ratio: 3 / 4;
+}
+
+/* ── The Fire: static (no-JS / reduced-motion) = stacked column.
+     [data-motion] switches to the pinned, absolute layout. ── */
+.fire-stage { position: relative; }
+.fire-img { margin-block-start: clamp(2rem, 6vh, 4rem); }
+[data-motion] .fire-stage {
+  height: 100svh;
+  display: flex;
+  align-items: center;
+}
+[data-motion] .fire-img {
+  position: absolute;
+  margin: 0;
+  top: 0;
+  right: 0;
+  width: min(72vw, 520px);
+  will-change: transform;
+}
+[data-motion] .fire-heading {
+  position: relative;
+  z-index: 2;
+}
+/* full-contrast while the images pass behind it */
+.fire-line {
+  color: var(--ink);
+}
+
+/* ── Filter pills (THE TABLE) ──────────────────────────── */
+.pill {
+  min-height: 48px;
+  padding-inline: 1.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--muted);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.875rem;
+  background: transparent;
+  cursor: pointer;
+}
+.pill[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+/* ── Map: mute Google's palette to sit on paper ────────── */
+.map-mute {
+  filter: grayscale(1) sepia(0.18) brightness(1.02) contrast(0.9);
+}
+
+/* ── Preloader ─────────────────────────────────────────── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader { display: none !important; }
+  .scroll-cue::after { animation: none; transform: translateY(-100%); }
+}
