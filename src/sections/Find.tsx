@@ -61,6 +61,7 @@ export function Find() {
                 : `Closed · opens at ${find.openHour}:00`}
           </p>
           <p className="type-body mt-2">{find.services.join(' · ')}</p>
+          <p className="caption mt-6">{find.note}</p>
 
           <div className="mt-10 flex gap-8">
             {find.socials.map(({ label, href }) => (

@@ -184,7 +184,7 @@ body {
   overflow: clip;
 }
 .fire-band::before {
-  /* ember glow rising from the oven corner */
+  /* warm glow rising from the corner of the band */
   content: "";
   position: absolute;
   inset: 0;
@@ -259,6 +259,17 @@ body {
   padding-inline: 1.25rem;
   font-size: 0.8rem;
 }
+/* light button for dark photo backdrops */
+.btn-light {
+  background: var(--bg);
+  border-color: var(--bg);
+  color: var(--ink);
+}
+.btn-light:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--bg);
+}
 
 /* ── Fixed nav: glass bar + scroll-progress hairline ───── */
 .site-nav {
@@ -331,7 +342,26 @@ body {
   to { transform: translateX(calc(-100% / 3)); }
 }
 
-/* ── Reviews (WORD OF MOUTH) ───────────────────────────── */
+/* ── Voices: faint photo wash behind the reviews ───────── */
+.voices-section {
+  position: relative;
+  overflow: clip;
+  padding-block: clamp(3rem, 7vh, 5rem);
+}
+.voices-bg,
+.voices-bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.voices-bg img {
+  object-fit: cover;
+  object-position: center 35%;
+  opacity: 0.1; /* the room shows through; text stays fully legible */
+}
+
+/* ── Reviews (GOOGLE REVIEWS) ──────────────────────────── */
 .stars {
   color: var(--ember);
   font-size: 0.8rem;

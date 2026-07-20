@@ -13,22 +13,22 @@ const { hero, captions } = CONTENT;
 
 /** Trail pool: 8 dishes cycled across 12 recycled cards. */
 const TRAIL_KEYS: readonly MediaKey[] = [
-  'pizza',
+  'doubleCappuccino',
+  'syrniki',
+  'matchaLatte',
+  'croissant',
   'cheesecake',
-  'mojito',
-  'coffee',
-  'khachapuri',
-  'salmon',
-  'burger',
-  'clubSandwich',
+  'avocadoToast',
+  'cakeOfDay',
+  'scramble',
 ];
 const POOL_SIZE = 12;
 
 /** Floating cards: media key, rotation, anchor classes. Depths live in useFloatCards. */
 const FLOAT_CARDS: ReadonlyArray<{ key: MediaKey; rotate: number; className: string }> = [
-  { key: 'mojito', rotate: -6, className: 'left-0 top-[16%] -translate-x-1/3' },
-  { key: 'cheesecake', rotate: 4, className: 'right-0 top-[4%] translate-x-1/4' },
-  { key: 'coffee', rotate: -3, className: 'right-[6%] bottom-[-5%]' },
+  { key: 'doubleCappuccino', rotate: -6, className: 'left-0 top-[16%] -translate-x-1/3' },
+  { key: 'croissant', rotate: 4, className: 'right-0 top-[4%] translate-x-1/4' },
+  { key: 'matchaLatte', rotate: -3, className: 'right-[6%] bottom-[-5%]' },
 ];
 
 export function Hero() {

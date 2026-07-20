@@ -1,9 +1,13 @@
-# Veranda — single-page restaurant site (demo)
+# Stories Tbilisi — single-page café site
 
-Portfolio/pitch demo of a marketing page for a fictional courtyard
-restaurant, "Veranda" (ვერანდა), Tbilisi.
+Marketing page for Stories Tbilisi Coffee & Tea (სთორის თბილისი),
+9 Galaktion Tabidze St, Tbilisi. Real photos live in `public/img`
+(`web-*.jpg` are the resized versions the site uses); remaining
+Unsplash URLs in `src/config/media.ts` are stand-ins awaiting client
+photos. The six 203px files in `public/img` are Google-Maps thumbnails,
+too small for any slot.
 
-Contact for the demo: Nikoloz Berdznishvili · 599 14 82 42.
+Site by Nikoloz Berdznishvili · 599 14 82 42.
 
 ## Run
 

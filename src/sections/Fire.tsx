@@ -29,17 +29,14 @@ export function Fire() {
             </p>
           </div>
           {/* Pinned travel handles these; the standard image reveal stays off */}
-          <Figure id="oven" className="fire-img" reveal={false} data-fire-img />
-          <Figure id="pizza" className="fire-img" reveal={false} data-fire-img />
-          <Figure id="salmon" className="fire-img" reveal={false} data-fire-img />
+          <Figure id="brewBar" className="fire-img" reveal={false} data-fire-img />
+          <Figure id="doubleCappuccino" className="fire-img" reveal={false} data-fire-img />
+          <Figure id="croissant" className="fire-img" reveal={false} data-fire-img />
         </div>
-      </div>
 
-      {/* Below the pin: khachapuri, full-bleed */}
-      <div className="mt-[clamp(3rem,7vh,5rem)]">
-        <Figure id="khachapuri" className="w-full" />
-        <p className="wrap type-body mt-6" data-body-reveal>
-          {fire.khachapuriLine}
+        {/* Below the pin: one-line kicker closes the band */}
+        <p className="type-h3 fire-line max-w-[30ch] pb-[clamp(1rem,3vh,2rem)]" data-body-reveal>
+          {fire.kicker}
         </p>
       </div>
     </section>

@@ -1,7 +1,14 @@
 /**
  * Single source of truth for every image on the site.
- * Swap any `src` for a real photo; nothing else needs to change.
- * `ratio` is locked by the layout — the file's natural size is irrelevant.
+ *
+ * Real photos of Stories live in /public/img — the `web-*.jpg` files are
+ * resized/compressed for the web (originals kept alongside). Anything still
+ * on images.unsplash.com is a stand-in for a real menu item; swap it the
+ * moment the client sends a proper photo. `ratio` is locked by the layout.
+ *
+ * NOTE: /public/img also holds six 203px Google-Maps thumbnails (breakfast,
+ * dessert, fruitsalad, pie, salad, tiramisu) — too low-res for any slot on
+ * this layout. Ask the client's photographer for the originals.
  */
 
 const u = (id: string, w = 1200) =>
@@ -16,75 +23,83 @@ export interface MediaItem {
 }
 
 export const MEDIA = {
+  /* ── Real photos of Stories ── */
   hero: {
-    src: u('photo-1552566626-52f8b828add9', 1080),
-    alt: 'Terrace tables in the evening, lit warm under the trees',
+    src: '/img/web-outsideview.jpg',
+    alt: 'The Stories storefront window on Galaktion Tabidze, warm bulbs behind the glass',
     ratio: '3/4',
   },
-  heroWide: {
-    src: u('photo-1414235077428-338989a2e8c0', 1920),
-    alt: 'Terrace tables in the evening, lit warm under the trees',
-    ratio: '16/9',
-  },
   place: {
-    src: u('photo-1537047902294-62a40c20a6ae', 1080),
-    alt: 'Set tables among the plants on the courtyard terrace',
+    src: '/img/web-interier.jpg',
+    alt: 'Inside Stories: framed Tbilisi sketches above the teal banquette',
     ratio: '4/5',
   },
-  oven: {
-    src: u('photo-1579751626657-72bc17010498', 1080),
-    alt: 'Pizza at the mouth of the wood-burning oven, fire behind',
-    ratio: '4/5',
-  },
-  pizza: {
-    src: u('photo-1513104890138-7c749659a591', 1080),
-    alt: 'Wood-fired pizza, blistered crust',
-    ratio: '1/1',
-  },
-  salmon: {
-    src: u('photo-1467003909585-2f8a72700288', 1080),
-    alt: 'Grilled salmon fillet on a plate',
-    ratio: '1/1',
-  },
-  khachapuri: {
-    src: u('photo-1746185601009-3ddac4b23121', 1600),
-    alt: 'Adjaruli khachapuri, yolk still soft',
+  room: {
+    src: '/img/web-interierforbackground.jpg',
+    alt: 'The long teal banquette with mustard cushions inside Stories',
     ratio: '16/9',
+  },
+  doubleCappuccino: {
+    src: '/img/web-coffeeuncropped.jpg',
+    alt: 'Double cappuccino on the terrace, daisies on the table',
+    ratio: '3/4',
+  },
+  pumpkinSoup: {
+    src: '/img/web-pumpkincreamsoup.jpg',
+    alt: 'Pumpkin cream soup with toasted seeds, served on the terrace',
+    ratio: '3/4',
+  },
+
+  /* ── Stand-ins for real menu items (replace with client photos) ── */
+  brewBar: {
+    src: u('photo-1442512595331-e89e73853f31', 1080),
+    alt: 'Filter coffee being poured at the brew bar',
+    ratio: '4/5',
+  },
+  filterCoffee: {
+    src: u('photo-1509042239860-f550ce710b93', 1080),
+    alt: 'Filter coffee served black',
+    ratio: '1/1',
+  },
+  matchaLatte: {
+    src: u('photo-1536256263959-770b48d82b0a', 1080),
+    alt: 'Matcha latte with leaf art',
+    ratio: '3/4',
+  },
+  scramble: {
+    src: u('photo-1525351484163-7529414344d8', 1080),
+    alt: 'Eggs on sourdough with greens',
+    ratio: '1/1',
+  },
+  avocadoToast: {
+    src: u('photo-1541519227354-08fa5d50c44d', 1080),
+    alt: 'Avocado toast with soft egg',
+    ratio: '1/1',
+  },
+  syrniki: {
+    src: u('photo-1567620905732-2d1ec7ab7445', 1080),
+    alt: 'Syrniki stack with honey being poured',
+    ratio: '3/4',
+  },
+  sandwich: {
+    src: u('photo-1550507992-eb63ffee0847', 1080),
+    alt: 'Baguette sandwich with cheese and greens',
+    ratio: '1/1',
+  },
+  croissant: {
+    src: u('photo-1555507036-ab1f4038808a', 1080),
+    alt: 'Croissants dusted with sugar',
+    ratio: '1/1',
   },
   cheesecake: {
     src: u('photo-1565958011703-44f9829ba187', 1080),
     alt: 'A slice of cheesecake',
     ratio: '4/5',
   },
-  clubSandwich: {
-    src: u('photo-1528735602780-2552fd46c7af', 1080),
-    alt: 'Club sandwich cut in half',
-    ratio: '1/1',
-  },
-  salad: {
-    src: u('photo-1546069901-ba9599a7e63c', 1080),
-    alt: 'Chicken avocado salad in a bowl',
+  cakeOfDay: {
+    src: u('photo-1578985545062-69928b1d9587', 1080),
+    alt: 'Chocolate layer cake, the cake of the day',
     ratio: '3/4',
-  },
-  soup: {
-    src: u('photo-1616501268209-edfff098fdd2', 1080),
-    alt: 'Mushroom cream soup with croutons',
-    ratio: '1/1',
-  },
-  burger: {
-    src: u('photo-1568901346375-23c9450c58cd', 1080),
-    alt: 'Burger on a wooden board',
-    ratio: '3/4',
-  },
-  mojito: {
-    src: u('photo-1551024709-8f23befc6f87', 1080),
-    alt: 'Mojito with mint and ice',
-    ratio: '3/4',
-  },
-  coffee: {
-    src: u('photo-1509042239860-f550ce710b93', 1080),
-    alt: 'Coffee served black',
-    ratio: '1/1',
   },
 } as const satisfies Record<string, MediaItem>;
 

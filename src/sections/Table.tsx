@@ -15,16 +15,17 @@ const { table } = CONTENT;
  * keep every filtered state asymmetric too.
  */
 const TILE_CLASS: Record<string, string> = {
-  cheesecake: 'col-span-2 md:col-span-6',
-  clubSandwich: 'md:col-span-4 md:col-start-8 md:mt-[10vh]',
-  pizza: 'md:col-span-4 mt-[4vh] md:mt-0',
-  salad: 'md:col-span-3 md:col-start-6 md:mt-[6vh]',
-  burger: 'md:col-span-3 md:col-start-10 mt-[3vh] md:mt-[-5vh]',
-  khachapuri: 'md:col-span-5 md:col-start-2 md:mt-[2vh]',
-  soup: 'md:col-span-3 md:col-start-8 mt-[4vh] md:mt-[8vh]',
-  salmon: 'md:col-span-4 md:col-start-4 mt-[3vh] md:mt-[3vh]',
-  mojito: 'md:col-span-3 md:col-start-9 md:mt-[-4vh]',
-  coffee: 'md:col-span-4 md:col-start-2 mt-[4vh] md:mt-[6vh]',
+  doubleCappuccino: 'col-span-2 md:col-span-6',
+  scramble: 'md:col-span-4 md:col-start-8 md:mt-[10vh]',
+  syrniki: 'md:col-span-4 mt-[4vh] md:mt-0',
+  avocadoToast: 'md:col-span-3 md:col-start-6 md:mt-[6vh]',
+  matchaLatte: 'md:col-span-3 md:col-start-10 mt-[3vh] md:mt-[-5vh]',
+  pumpkinSoup: 'md:col-span-5 md:col-start-2 md:mt-[2vh]',
+  sandwich: 'md:col-span-3 md:col-start-8 mt-[4vh] md:mt-[8vh]',
+  cheesecake: 'md:col-span-4 md:col-start-4 mt-[3vh] md:mt-[3vh]',
+  filterCoffee: 'md:col-span-3 md:col-start-9 md:mt-[-4vh]',
+  cakeOfDay: 'md:col-span-4 md:col-start-2 mt-[4vh] md:mt-[6vh]',
+  croissant: 'md:col-span-3 md:col-start-7 mt-[3vh] md:mt-[2vh]',
 };
 
 export function Table() {

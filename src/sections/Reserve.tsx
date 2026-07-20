@@ -26,10 +26,10 @@ export function Reserve() {
       {/* Full-bleed photo backdrop under an ink gradient */}
       <div className="reserve-bg" aria-hidden="true">
         <img
-          src={MEDIA.heroWide.src}
+          src={MEDIA.room.src}
           alt=""
           width={1920}
-          height={1080}
+          height={1081}
           loading="lazy"
           decoding="async"
         />
@@ -43,6 +43,16 @@ export function Reserve() {
             <p className="type-body mt-8 max-w-[36ch]" data-body-reveal>
               {reserve.line}
             </p>
+            <div className="mt-10" data-body-reveal>
+              <a
+                href={reserve.wolt.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-light"
+              >
+                {reserve.wolt.label}
+              </a>
+            </div>
             <p className="type-body mt-8" data-body-reveal>
               {reserve.or}{' '}
               <a href={find.phoneHref} className="phone-link">
